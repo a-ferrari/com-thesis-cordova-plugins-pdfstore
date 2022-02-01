@@ -12,9 +12,10 @@ Api level 29: using MediaStore Api with MediaStore.Downloads triggers 'SQLiteCon
 
 Api leved <= 29:
 add these permissions in your Manifest
+```
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+```
 
 ## API
 The plugin exports only one function:
