@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com-thesis-plugins-pdfstore" version="0.0.1"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>CordovaAndroidThesisStore</name>
+    <description>Provides a store() function that saves a pdf file.</description>
+    <license>MIT</license>
+    <keywords>cordova,android,mediastore,pdf</keywords>
+    <js-module name="CordovaAndroidThesisStore" src="www/CordovaAndroidThesisStore.js">
+        <clobbers target="cordova.plugins.CordovaAndroidThesisStore" />
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="CordovaAndroidThesisStore">
+                <param name="android-package" value="com.thesis.plugins.CordovaAndroidThesisStore" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <source-file src="src/android/com/thesis/plugins/CordovaAndroidThesisStore.java" target-dir="src/com/thesis/plugins" />
+    </platform>
+</plugin>

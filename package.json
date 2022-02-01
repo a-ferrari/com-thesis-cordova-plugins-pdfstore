@@ -1,0 +1,21 @@
+{
+  "name": "com-thesis-plugins-pdfstore",
+  "version": "0.1.1",
+  "description": "Cordova plugin for saving pdf and open pdf in ^Android 11",
+  "cordova": {
+    "id": "com-thesis-plugins-pdfstore",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Thesis",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/"
+  }
+}
