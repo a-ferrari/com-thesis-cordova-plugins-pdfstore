@@ -81,9 +81,6 @@ var array = new Uint8Array([37, 80, 68, 70, 45, 49, 46, 49, 10, 37, -62, -91, -6
       var blob = new Blob([array]);
       var reader = new FileReader();
       reader.onload = reader.onload = (e) => {
-      
-        /* it returns well */
-      
          //var base64String =   e.target.result;
          var arr = (<string>e.target.result).split(',');
          var base64String = arr[arr.length-1];
