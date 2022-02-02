@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.app.Activity;
 
 import androidx.annotation.RequiresApi;
 
@@ -144,6 +145,22 @@ public class CordovaAndroidThesisStore extends CordovaPlugin {
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (resultCode == Activity.RESULT_OK &&requestCode==1) {
+            // Here, no request code
+            if(intent.getData()!=null){
+                Uri uri = intent.getData();
+                Intent intentPdf = new Intent(Intent.ACTION_VIEW);
+                intentPdf.setDataAndType(uri, "application/pdf");
+                intentPdf.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                intentPdf.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intentPdf.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                cordova.getActivity().startActivity(intentPdf);
+            }
+        }
+    }
+
 
     protected void store(String byteString, String fileName, CallbackContext callbackContext) {
 
@@ -169,7 +186,7 @@ public class CordovaAndroidThesisStore extends CordovaPlugin {
     // apilevel 29 getContentResolver().insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues);
     //returns always null, for now use  android:requestLegacyExternalStorage="true" and legacy method
     @RequiresApi(api = Build.VERSION_CODES.R)
-    boolean saveFileNew(String name, byte[] data, boolean openFile) {
+    protected boolean saveFileNew(String name, byte[] data, boolean openFile) {
         ContentResolver resolver = cordova.getActivity().getContentResolver();
 
         ContentValues contentValues = new ContentValues();
@@ -217,7 +234,7 @@ public class CordovaAndroidThesisStore extends CordovaPlugin {
     }
 
 
-    boolean saveFileOld(String name, byte[] data, boolean openFile) {
+    protected boolean saveFileOld(String name, byte[] data, boolean openFile) {
         try {
 
             File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
